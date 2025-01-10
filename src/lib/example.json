@@ -1,0 +1,21 @@
+{
+    "user_id": 1,
+    "name": "Juan Pruebas",
+    "enabled": true,
+    "ages": [
+        1,
+        2,
+        3
+    ],
+    "enemies": null,
+    "properties": {
+        "first": "1",
+        "2th": 2,
+        "eagles": [
+            {
+                "eagle_id": 1,
+                "pet_name": "Eaglytor"
+            }
+        ]
+    }
+}
