@@ -67,17 +67,25 @@ export function parseObject(json: any): unknown {
             case "string":
             case "boolean":
                 {
-                    schema.properties[key] = keyType;
+                    schema.properties[key] = {
+                        type: keyType,
+                    };
+
                     break;
                 }
             case "number":
                 {
                     if (Number.isInteger(json[key])) {
-                        schema.properties[key] = "integer";
+                        schema.properties[key] = {
+                            type: "integer",
+                        };
                         break;
                     }
 
-                    schema.properties[key] = "float";
+                    schema.properties[key] = {
+                        type: "float",
+                    };
+
                     break;
                 }
             case "object":
