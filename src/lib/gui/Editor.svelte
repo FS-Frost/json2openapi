@@ -23,7 +23,7 @@
     let monaco: Monaco | null;
     let editor: MonacoEditor.IStandaloneCodeEditor;
 
-    function getCurrentValue(): string {
+    export function getCurrentValue(): string {
         if (editor == null) {
             console.warn("sql editor not ready, can't get value");
             return "";

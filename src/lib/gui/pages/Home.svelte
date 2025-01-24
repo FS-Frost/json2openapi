@@ -17,7 +17,8 @@
             json = JSON.parse(code);
         } catch (error) {
             errorMessage = `ERROR: ${error}`;
-            console.log(errorMessage);
+            console.error(errorMessage);
+            editorOpenApi?.setValue(`// ${errorMessage}`);
             return;
         }
 
@@ -26,31 +27,55 @@
             editorOpenApi?.setValue(JSON.stringify(result, null, 2));
         } catch (error) {
             errorMessage = `ERROR: translating to OpenAPI: ${error}`;
-            console.log(errorMessage);
+            console.error(errorMessage);
+            editorOpenApi?.setValue(`// ${errorMessage}`);
             return;
         }
 
         errorMessage = "";
     }
 
+    function formatSourceCode(): void {
+        try {
+            let code = editor?.getCurrentValue() ?? "";
+            updateCode(code);
+
+            if (errorMessage != "") {
+                alert(errorMessage);
+                return;
+            }
+
+            code = JSON.stringify(JSON.parse(code), null, 2);
+            editor?.setValue(code);
+        } catch (error) {
+            console.error("failed to format source code", error);
+        }
+    }
+
+    function showSourceExample(): void {
+        const initialCode = JSON.stringify(example, null, 2);
+        editor?.setValue(initialCode);
+        updateCode(initialCode);
+    }
+
     onMount(async () => {
         let editorInitError = (await editor?.init()) ?? "";
         if (editorInitError.length > 0) {
             errorMessage = `ERROR: ${editorInitError}`;
-            console.log(title);
+            console.log(errorMessage);
+            editorOpenApi?.setValue(`// ${errorMessage}`);
             return;
         }
 
         editorInitError = (await editorOpenApi?.init()) ?? "";
         if (editorInitError.length > 0) {
             errorMessage = `ERROR: ${editorInitError}`;
-            console.log(errorMessage);
+            console.error(errorMessage);
+            editorOpenApi?.setValue(`// ${errorMessage}`);
             return;
         }
 
-        const initialCode = JSON.stringify(example, null, 2);
-        editor?.setValue(initialCode);
-        updateCode(initialCode);
+        showSourceExample();
     });
 </script>
 
@@ -73,6 +98,14 @@
             value=""
             onChange={(detail) => updateCode(detail)}
         />
+
+        <button class="button is-link" onclick={() => formatSourceCode()}>
+            Format JSON
+        </button>
+
+        <button class="button is-link" onclick={() => showSourceExample()}>
+            Show example
+        </button>
     </div>
 
     <div class="lang">
@@ -105,5 +138,9 @@
     .lang {
         width: 100%;
         justify-content: space-evenly;
+    }
+
+    .lang button {
+        width: 10rem;
     }
 </style>
