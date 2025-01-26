@@ -19,9 +19,9 @@
         onChange = () => {},
     }: Props = $props();
 
-    let divEditor: HTMLElement;
-    let monaco: Monaco | null;
-    let editor: MonacoEditor.IStandaloneCodeEditor;
+    let divEditor = $state<HTMLElement>();
+    let monaco = $state<Monaco>();
+    let editor = $state<MonacoEditor.IStandaloneCodeEditor>();
 
     export function getCurrentValue(): string {
         if (editor == null) {

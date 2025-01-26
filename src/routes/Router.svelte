@@ -3,7 +3,7 @@
     import { onMount } from "svelte";
     import Home from "$lib/gui/pages/Home.svelte";
 
-    let page: ActivePage;
+    let page = $state<ActivePage>("home");
 
     onMount(() => {
         activePage.subscribe((newActivePage) => {
