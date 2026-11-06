@@ -1,0 +1,145 @@
+@import 'tailwindcss';
+
+/*
+ * Colors are CSS variables switched by theme (dark default; light explicit via data-theme="light" or by the system
+ * when no explicit choice). The light block is repeated because CSS cannot share declarations between @media and a
+ * selector. Tailwind utilities read them through @theme inline: bg-canvas, bg-panel, text-fg-2, border-line…
+ * Hex only: Monaco themes (client/monaco.ts) read some of these values.
+ */
+:root {
+	color-scheme: dark;
+	--bg: #0f1217;
+	--bg-2: #161a21;
+	--bg-3: #1e232c;
+	--line: #2a303b;
+	--text: #e6e8eb;
+	--text-2: #a0a7b4;
+	--text-3: #6b7280;
+	--accent: #8b7cf6;
+	--accent-strong: #7262f0;
+	--accent-ink: #ffffff;
+	--ok: #3fb68b;
+	--bad: #ef6464;
+	--warn: #e5a93a;
+	--info: #5aa2f0;
+	--editor-bg: #12161c;
+	--editor-line: #1a1f27;
+	--scroll: #8a93a24d;
+	--shadow: #00000073;
+}
+
+:root[data-theme='light'] {
+	color-scheme: light;
+	--bg: #f7f8fa;
+	--bg-2: #ffffff;
+	--bg-3: #eef0f4;
+	--line: #dde1e8;
+	--text: #1a1d23;
+	--text-2: #4f5663;
+	--text-3: #8a909c;
+	--accent: #5b4ee0;
+	--accent-strong: #4a3dd0;
+	--accent-ink: #ffffff;
+	--ok: #1d8f5f;
+	--bad: #cf3d3d;
+	--warn: #9a6a00;
+	--info: #2b6cb8;
+	--editor-bg: #ffffff;
+	--editor-line: #f3f4f7;
+	--scroll: #6b72804d;
+	--shadow: #0000001f;
+}
+@media (prefers-color-scheme: light) {
+	:root:not([data-theme='dark']) {
+		color-scheme: light;
+		--bg: #f7f8fa;
+		--bg-2: #ffffff;
+		--bg-3: #eef0f4;
+		--line: #dde1e8;
+		--text: #1a1d23;
+		--text-2: #4f5663;
+		--text-3: #8a909c;
+		--accent: #5b4ee0;
+		--accent-strong: #4a3dd0;
+		--accent-ink: #ffffff;
+		--ok: #1d8f5f;
+		--bad: #cf3d3d;
+		--warn: #9a6a00;
+		--info: #2b6cb8;
+		--editor-bg: #ffffff;
+		--editor-line: #f3f4f7;
+		--scroll: #6b72804d;
+		--shadow: #0000001f;
+	}
+}
+
+@theme inline {
+	--color-canvas: var(--bg);
+	--color-panel: var(--bg-2);
+	--color-raised: var(--bg-3);
+	--color-line: var(--line);
+	--color-fg: var(--text);
+	--color-fg-2: var(--text-2);
+	--color-fg-3: var(--text-3);
+	--color-accent: var(--accent);
+	--color-accent-strong: var(--accent-strong);
+	--color-accent-ink: var(--accent-ink);
+	--color-ok: var(--ok);
+	--color-bad: var(--bad);
+	--color-warn: var(--warn);
+	--color-info: var(--info);
+	--font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+@layer base {
+	html,
+	body {
+		background: var(--bg);
+		color: var(--text);
+		-webkit-tap-highlight-color: transparent;
+	}
+	:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
+	}
+	button:not(:disabled),
+	[role='button']:not(:disabled) {
+		cursor: pointer;
+	}
+}
+
+@layer components {
+	/* Buttons: neutral by default, .btn-primary for the main action, .btn-ghost for toolbars. */
+	.btn {
+		@apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-line bg-raised px-3 py-1.5 text-sm
+			font-medium text-fg transition-colors select-none hover:border-fg-3 disabled:cursor-not-allowed disabled:opacity-50;
+	}
+	.btn-primary {
+		@apply border-accent bg-accent text-accent-ink hover:border-accent-strong hover:bg-accent-strong;
+	}
+	.btn-ghost {
+		@apply border-transparent bg-transparent text-fg-2 hover:border-transparent hover:bg-raised hover:text-fg;
+	}
+	.btn-icon {
+		@apply size-8 px-0 py-0;
+	}
+	.field {
+		@apply w-full rounded-lg border border-line bg-canvas px-2.5 py-1.5 text-sm text-fg placeholder:text-fg-3
+			focus:border-accent focus:outline-none;
+	}
+	.label {
+		@apply mb-1 block text-xs font-medium text-fg-2;
+	}
+	.kbd {
+		@apply rounded border border-line bg-raised px-1.5 py-0.5 font-mono text-[0.7rem] text-fg-2;
+	}
+	/* Segmented control: a row of .seg-btn with aria-pressed. */
+	.seg {
+		@apply inline-flex rounded-lg border border-line bg-canvas p-0.5;
+	}
+	.seg-btn {
+		@apply rounded-md px-2.5 py-1 text-xs font-medium text-fg-2 transition-colors hover:text-fg aria-pressed:bg-raised
+			aria-pressed:text-fg aria-pressed:shadow-sm;
+	}
+}

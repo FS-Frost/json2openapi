@@ -1,27 +1,23 @@
-<script>
-    import "./styles.css";
+<script lang="ts">
+	import '../app.css';
+	import { onMount, type Snippet } from 'svelte';
+	import Toaster from '#lib/components/Toaster.svelte';
+	import UpdateNotice from '#lib/components/UpdateNotice.svelte';
+	import { initTheme } from '#lib/client/theme.svelte.ts';
+	import { registerServiceWorker } from '#lib/client/pwa.ts';
+
+	interface Props {
+		children: Snippet;
+	}
+
+	let { children }: Props = $props();
+
+	onMount(() => {
+		initTheme();
+		void registerServiceWorker();
+	});
 </script>
 
-<div class="app">
-    <main>
-        <slot />
-    </main>
-</div>
-
-<style>
-    .app {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-
-    main {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        padding: 1rem;
-        width: 100%;
-        margin: 0 auto;
-        box-sizing: border-box;
-    }
-</style>
+<Toaster />
+<UpdateNotice />
+{@render children()}

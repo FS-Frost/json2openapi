@@ -1,21 +1,18 @@
 {
-    "user_id": 1,
-    "name": "Juan Pruebas",
-    "enabled": true,
-    "ages": [
-        1,
-        2,
-        3
-    ],
-    "enemies": null,
-    "properties": {
-        "first": "1",
-        "2th": 2,
-        "eagles": [
-            {
-                "eagle_id": 1,
-                "pet_name": "Eaglytor"
-            }
-        ]
-    }
+  "user_id": 1,
+  "name": "Juan Pruebas",
+  "enabled": true,
+  "score": 9.5,
+  "ages": [1, 2, 3],
+  "enemies": null,
+  "created_at": "2025-01-10T12:00:00Z",
+  "properties": {
+    "first": "1",
+    "2th": 2,
+    "eagles": [
+      { "eagle_id": 1, "pet_name": "Eaglytor" },
+      { "eagle_id": 2, "pet_name": null, "wingspan": 2.1 }
+    ]
+  },
+  "tags": []
 }

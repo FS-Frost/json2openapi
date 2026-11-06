@@ -1,9 +1,32 @@
+import adapter from '@sveltejs/adapter-static';
 import { sveltekit } from '@sveltejs/kit/vite';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
+// Site base: '' locally; '/<repo>' on GitHub Pages (set by CI through BASE_PATH).
+const base = (process.env.BASE_PATH ?? '') as '' | `/${string}`;
+// Version = short commit sha (GITHUB_SHA in Actions); "dev" locally. Build date ≈ deploy date.
+const version = process.env.GITHUB_SHA?.slice(0, 7) || 'dev';
+process.env.VITE_BUILT_AT ??= new Date().toISOString();
+
 export default defineConfig({
-	plugins: [sveltekit()],
-	server: {
-		port: 5000,
-	}
+	plugins: [
+		tailwindcss(),
+		sveltekit({
+			compilerOptions: {
+				runes: ({ filename }) => (filename.split(/[/\\]/).includes('node_modules') ? undefined : true)
+			},
+			// SPA: 404.html serves any deep route on GitHub Pages (CI copies it to index.html).
+			adapter: adapter({ pages: 'build', assets: 'build', fallback: '404.html', precompress: false, strict: false }),
+			paths: { base, relative: false },
+			// Registered by hand in production only (client/pwa.ts).
+			serviceWorker: { register: false },
+			// `updated` ($app/state) polls _app/version.json: notice in components/UpdateNotice.svelte.
+			version: { name: version, pollInterval: version === 'dev' ? 0 : 5 * 60_000 }
+		})
+	],
+	worker: { format: 'es' },
+	// Monaco is one big lazily loaded chunk (client/monaco.ts); it does not delay the first paint.
+	build: { chunkSizeWarningLimit: 4096 },
+	server: { port: Number(process.env.PORT ?? 5000), strictPort: true }
 });
