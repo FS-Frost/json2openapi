@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#0f1217" />
+		<meta
+			name="description"
+			content="Convert JSON samples to OpenAPI 3.1 schemas, TypeScript interfaces and Zod schemas. Runs in your browser."
+		/>
+		<script>
+			// Apply the stored theme before painting (no flash). See src/lib/client/theme.svelte.ts.
+			try {
+				var t = localStorage.getItem('json2openapi.theme');
+				if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+			} catch (e) {}
+		</script>
+		<link rel="icon" href="/json2openapi/favicon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="/json2openapi/apple-touch-icon.png" />
+		<link rel="manifest" href="/json2openapi/manifest.webmanifest" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title" content="json2openapi" />
+		<link href="/json2openapi/_app/immutable/entry/start.Bk_oZQ5j.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/entry/payload.DSmR2FwN.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/CCMZs0eX.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/CaNZVgny.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/DOL8rbQy.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/CCcfysO9.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/entry/app.E9ZlVNRk.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/nodes/0.5toQ_bCi.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/DK3Fl9T5.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/BkGMVWPx.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/ikUgOi5j.js" rel="modulepreload">
+		
+		<link href="/json2openapi/_app/immutable/assets/0.DJPIuyB9.css" rel="stylesheet">
+	</head>
+	<body>
+		<div style="display: contents">
+			<script>
+				{
+					__sveltekit_1jjs09p = {
+						base: "/json2openapi",
+						version: "496a1b1",
+						assets: "/json2openapi"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					import("/json2openapi/_app/immutable/entry/start.Bk_oZQ5j.js").then(async (kit) => {
+						kit.init(__sveltekit_1jjs09p);
+						const app = await import("/json2openapi/_app/immutable/entry/app.E9ZlVNRk.js");
+						kit.start(app, element);
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

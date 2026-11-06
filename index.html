@@ -1,84 +1,58 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" href="./favicon.png" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<script src="js/fork-me-baby.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-		integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
-	
-		<link href="./_app/immutable/assets/0.B1iASu0-.css" rel="stylesheet">
-		<link href="./_app/immutable/assets/2.y4vkTpn2.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.ClzS_nbO.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/entry.DhAh29ho.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/runtime.D52duim4.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index.CH9mpOfo.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/index-client.DsDOs_L2.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.Bfv4lG-Z.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/render.Bd1gAS2X.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/disclose-version.DU8A1DN8.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/props.Day_2P6H.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/0.t8xal8xf.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/legacy.mfGefezZ.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/2.Dwf32M44.js"><!--[--><!--]--><title>JSON-2-OpenAPI</title>
-</head>
-
-<body data-sveltekit-preload-data="hover">
-	<div style="display: contents"><!--[--><!--[--><!----><div class="app svelte-1yt2rm9"><main class="svelte-1yt2rm9"><!----><!----><section class="svelte-u22agc"><!--[--><h1>JSON-2-OpenAPI</h1> <p class="has-text-danger svelte-ieltts"> </p> <div class="langs svelte-ieltts"><div class="lang svelte-ieltts"><label class="label svelte-ieltts" for="">JSON</label> <div class="custom-editor svelte-qhwgh8"></div><!----> <button class="button is-link svelte-ieltts">Format JSON</button> <button class="button is-link svelte-ieltts">Show example</button></div> <div class="lang svelte-ieltts"><label class="label svelte-ieltts" for="">OpenAPI</label> <div class="custom-editor svelte-qhwgh8"></div><!----></div></div><!--]--><!----></section><!----><!----></main></div><!----><!--]--> <!--[!--><!--]--><!--]-->
-			
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#0f1217" />
+		<meta
+			name="description"
+			content="Convert JSON samples to OpenAPI 3.1 schemas, TypeScript interfaces and Zod schemas. Runs in your browser."
+		/>
+		<script>
+			// Apply the stored theme before painting (no flash). See src/lib/client/theme.svelte.ts.
+			try {
+				var t = localStorage.getItem('json2openapi.theme');
+				if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+			} catch (e) {}
+		</script>
+		<link rel="icon" href="/json2openapi/favicon.svg" type="image/svg+xml" />
+		<link rel="apple-touch-icon" href="/json2openapi/apple-touch-icon.png" />
+		<link rel="manifest" href="/json2openapi/manifest.webmanifest" />
+		<meta name="mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-title" content="json2openapi" />
+		<link href="/json2openapi/_app/immutable/entry/start.Bk_oZQ5j.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/entry/payload.DSmR2FwN.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/CCMZs0eX.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/CaNZVgny.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/DOL8rbQy.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/CCcfysO9.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/entry/app.E9ZlVNRk.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/nodes/0.5toQ_bCi.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/DK3Fl9T5.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/BkGMVWPx.js" rel="modulepreload">
+		<link href="/json2openapi/_app/immutable/chunks/ikUgOi5j.js" rel="modulepreload">
+		
+		<link href="/json2openapi/_app/immutable/assets/0.DJPIuyB9.css" rel="stylesheet">
+	</head>
+	<body>
+		<div style="display: contents">
 			<script>
 				{
-					__sveltekit_70q8f1 = {
-						base: new URL(".", location).pathname.slice(0, -1)
+					__sveltekit_1jjs09p = {
+						base: "/json2openapi",
+						version: "496a1b1",
+						assets: "/json2openapi"
 					};
 
 					const element = document.currentScript.parentElement;
 
-					Promise.all([
-						import("./_app/immutable/entry/start.ClzS_nbO.js"),
-						import("./_app/immutable/entry/app.Bfv4lG-Z.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element, {
-							node_ids: [0, 2],
-							data: [null,null],
-							form: null,
-							error: null
-						});
+					import("/json2openapi/_app/immutable/entry/start.Bk_oZQ5j.js").then(async (kit) => {
+						kit.init(__sveltekit_1jjs09p);
+						const app = await import("/json2openapi/_app/immutable/entry/app.E9ZlVNRk.js");
+						kit.start(app, element);
 					});
 				}
 			</script>
 		</div>
-
-	<script>
-		forkMeBaby({
-			position: "top-right",
-			link: "https://github.com/FS-Frost/json2openapi",
-			sticky: false,
-		});
-
-		if ("serviceWorker" in navigator) {
-			window.addEventListener("load", function () {
-				navigator.serviceWorker
-					.register("worker.js")
-					.then(
-						function (registration) {
-							console.log("Worker registration successful", registration.scope);
-						},
-						function (err) {
-							console.log("Worker registration failed", err);
-						}
-					)
-					.catch(function (err) {
-						console.log(err);
-					});
-			});
-		} else {
-			console.log("Service Worker is not supported by browser.");
-		}
-	</script>
-</body>
-
+	</body>
 </html>
